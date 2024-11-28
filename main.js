@@ -18,7 +18,12 @@ $(function() {
     settings.numberofavatars = (37);
 
 	
-   
+    // **Redirection**    
+	// After the introduction task is over participants should be redirected to a survey with manipulation checks and dependent measures, to subsequent tasks, or to further instructions. 
+	// If the study is called with a parameter for redirection, as explained in the documentation, this value is overwritten. 
+	// To the redirect link, the following information will be appended: (1) participant number, (2) condition, (3) username, (4) description submitted by participant. These variables can be extracted from the link, saved as data, and used for linking the Social Media Ostracism paradigm to subsequent tasks and measures. See documentation for more details.
+
+    settings.defaultredirect = 'https://umfrage.umit-tirol.at/index.php/845248?lang=de';
 
 	
 	// **Tasklength**     
@@ -300,6 +305,24 @@ $(function() {
 		});
 
    
+// Redirect, default after 180000ms = 180s = 3min
+    setTimeout(function() {
+    
+    $(window).unbind('beforeunload');
+    
+    $('#final-continue').show();
+
+    $('#timer').text('00:00');
+    
+    $('#final-continue').on('click', function() {
+// Redirect link
+      location.href = window.redirect+'&p='+window.participant+'&c='+window.condition+'&u='+encodeURI(window.username)+'&av='+window.avatarexport+'&d='+encodeURI(window.description);
+
+    });
+    
+    },window.settings.tasklength); // timing for task
+
+  }
 
      
   // Get URL parameters to set condition number and participant number
