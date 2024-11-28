@@ -304,7 +304,6 @@ $(function() {
 		  columnWidth : 10
 		});
 
-
    
 
      
