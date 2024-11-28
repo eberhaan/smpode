@@ -305,16 +305,7 @@ $(function() {
 		});
 
 
-    // Redirect, default after 180000ms = 180s = 3min
-    setTimeout(function() {
-    
-    $(window).unbind('beforeunload');
-    
-    $('#final-continue').show();
-
-    $('#timer').text('00:00');
-    
-    $('#final-continue').on('click', function() {
+   
 
      
   // Get URL parameters to set condition number and participant number
