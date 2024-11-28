@@ -316,16 +316,7 @@ $(function() {
     
     $('#final-continue').on('click', function() {
 
-      // Redirect link
-      location.href = window.redirect+'&p='+window.participant+'&c='+window.condition+'&u='+encodeURI(window.username)+'&av='+window.avatarexport+'&d='+encodeURI(window.description);
-
-    });
-    
-    },window.settings.tasklength); // timing for task
-
-  }
-	
-
+     
   // Get URL parameters to set condition number and participant number
   function get_params() {
     // condition number must be 1, 2, or 3
