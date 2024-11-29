@@ -17,7 +17,15 @@ $(function() {
 
     settings.numberofavatars = (37);
 
+	
+    // **Redirection**    
+	// After the introduction task is over participants should be redirected to a survey with manipulation checks and dependent measures, to subsequent tasks, or to further instructions. 
+	// If the study is called with a parameter for redirection, as explained in the documentation, this value is overwritten. 
+	// To the redirect link, the following information will be appended: (1) participant number, (2) condition, (3) username, (4) description submitted by participant. These variables can be extracted from the link, saved as data, and used for linking the Social Media Ostracism paradigm to subsequent tasks and measures. See documentation for more details.
 
+    settings.defaultredirect = 'https://umfrage.umit-tirol.at/index.php/845248?lang=de';
+
+	
 	// **Tasklength**     
     // Length of the group introduction task in milliseconds. Can be changed to any number (in ms). Default: 180000 (3min) 
     settings.tasklength = 180000; 
@@ -296,7 +304,25 @@ $(function() {
 		  columnWidth : 10
 		});
 
-  
+   
+// Redirect, default after 180000ms = 180s = 3min
+    setTimeout(function() {
+    
+    $(window).unbind('beforeunload');
+    
+    $('#final-continue').show();
+
+    $('#timer').text('00:00');
+    
+    $('#final-continue').on('click', function() {
+// Redirect link
+      location.href = window.redirect+'&p='+window.participant+'&c='+window.condition+'&u='+encodeURI(window.username)+'&av='+window.avatarexport+'&d='+encodeURI(window.description);
+
+    });
+    
+    },window.settings.tasklength); // timing for task
+
+  }
 
      
   // Get URL parameters to set condition number and participant number
@@ -313,7 +339,20 @@ $(function() {
     } else {
       window.participant = 0; // participant defaults to 0
     }    
-      
+    // redirect
+    if(window.QueryString.redirect !== undefined && window.QueryString.redirect !== "") {
+      window.redirect = decode(window.QueryString.redirect);
+    } else {
+	  window.redirect = window.settings.defaultredirect;
+	}
+	
+	var urlHasQuestionMark = (window.redirect.indexOf("?") > -1);
+	if(!urlHasQuestionMark) {
+		window.redirect = window.redirect+"?redir=1";
+	}
+	//alert(window.redirect);
+
+  }
   
   
   // adjustments according to current condition
@@ -335,6 +374,28 @@ $(function() {
   }
   
 
+  // The variable QueryString contains the url parameters, i.e. condition no. and participant no.
+  // via http://stackoverflow.com/a/979995
+  window.QueryString = function () {
+    var query_string = {};
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+        // If first entry with this name
+      if (typeof query_string[pair[0]] === "undefined") {
+        query_string[pair[0]] = pair[1];
+        // If second entry with this name
+      } else if (typeof query_string[pair[0]] === "string") {
+        var arr = [ query_string[pair[0]], pair[1] ];
+        query_string[pair[0]] = arr;
+        // If third or later entry with this name
+      } else {
+        query_string[pair[0]].push(pair[1]);
+      }
+    } 
+      return query_string;
+  } ();
 
 
   // Function to check letters and numbers
