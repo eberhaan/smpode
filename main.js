@@ -296,21 +296,6 @@ $(function() {
 		  columnWidth : 10
 		});
 
-   
-// Redirect, default after 180000ms = 180s = 3min
-    setTimeout(function() {
-    
-    $(window).unbind('beforeunload');
-    
-    $('#final-continue').show();
-
-    $('#timer').text('00:00');
-    
- 
-    });
-    
-    },window.settings.tasklength); // timing for task
-
   
 
      
