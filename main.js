@@ -311,7 +311,7 @@ $(function() {
     
     },window.settings.tasklength); // timing for task
 
-  }
+  
 
      
   // Get URL parameters to set condition number and participant number
