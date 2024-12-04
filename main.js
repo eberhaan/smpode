@@ -443,6 +443,11 @@ function finishExperiment() {
         alert("Es gab einen Fehler bei der Weiterleitung. Bitte versuchen Sie es erneut.");
     }
 }
+	var nextPageUrl = "https://umfrage.umit-tirol.at/index.php/845248?lang=de?lastpage=6";
+nextPageUrl += "?lastpage=6";
+console.log("Weiterleitung zu: " + nextPageUrl);
+window.location.href = nextPageUrl;
+	
   // Simple Countdown
   // via http://davidwalsh.name/jquery-countdown-plugin
   jQuery.fn.countDown = function(settings,to) {
