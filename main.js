@@ -23,7 +23,7 @@ $(function() {
 	// If the study is called with a parameter for redirection, as explained in the documentation, this value is overwritten. 
 	// To the redirect link, the following information will be appended: (1) participant number, (2) condition, (3) username, (4) description submitted by participant. These variables can be extracted from the link, saved as data, and used for linking the Social Media Ostracism paradigm to subsequent tasks and measures. See documentation for more details.
 
-    settings.defaultredirect = 'https://umfrage.umit-tirol.at/index.php/845248?lang=de&lastpage=6';
+    settings.defaultredirect = 'https://umfrage.umit-tirol.at/index.php/845248?lang=de';
 
 	
 	// **Tasklength**     
@@ -341,7 +341,7 @@ $(function() {
     }    
     // redirect
     if(window.QueryString.redirect !== undefined && window.QueryString.redirect !== "") {
-      window.redirect = decodeURIComponent(window.QueryString.redirect);
+      window.redirect = decode(window.QueryString.redirect);
     } else {
 	  window.redirect = window.settings.defaultredirect;
 	}
@@ -351,8 +351,7 @@ $(function() {
 		window.redirect = window.redirect+"?redir=1";
 	}
 	//alert(window.redirect);
- // Debug-Ausgabe der Weiterleitungs-URL
-    console.log("Weiterleitung zu: ", window.redirect);
+
   }
   
   
@@ -409,7 +408,7 @@ $(function() {
         return true; 
       }
   }
-onsole.log("Redirect-URL im Experiment: ", window.redirect);
+
 
   // Function to add extra zeros infront of numbers (used for the countdown)
   // via http://stackoverflow.com/a/6466243
@@ -426,19 +425,7 @@ onsole.log("Redirect-URL im Experiment: ", window.redirect);
 	return decodeURIComponent(encoded.replace(/\+/g,  " "));
   }
 
- // Rückleitung nach Abschluss des Experiments
-function finishExperiment() {
-    console.log("Experiment abgeschlossen. Weiterleitung zu: ", window.redirect);
-
-    // Sicherstellen, dass die Rückleitungs-URL korrekt ist
-    if (!window.redirect || window.redirect === "") {
-        alert("Es gab ein Problem mit der Weiterleitung. Bitte kontaktieren Sie den Support.");
-    } else {
-        // Weiterleitung zur LimeSurvey-URL
-        window.location.href = window.redirect + "&done=1";
-    }
-}
-	
+  
   // Simple Countdown
   // via http://davidwalsh.name/jquery-countdown-plugin
   jQuery.fn.countDown = function(settings,to) {
