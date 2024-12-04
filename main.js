@@ -341,7 +341,7 @@ $(function() {
     }    
     // redirect
     if(window.QueryString.redirect !== undefined && window.QueryString.redirect !== "") {
-      window.redirect = decode(window.QueryString.redirect);
+      window.redirect = decodeURIComponent(window.QueryString.redirect);
     } else {
 	  window.redirect = window.settings.defaultredirect;
 	}
@@ -351,7 +351,8 @@ $(function() {
 		window.redirect = window.redirect+"?redir=1";
 	}
 	//alert(window.redirect);
-
+ // Debug-Ausgabe der Weiterleitungs-URL
+    console.log("Weiterleitung zu: ", window.redirect);
   }
   
   
@@ -425,7 +426,23 @@ $(function() {
 	return decodeURIComponent(encoded.replace(/\+/g,  " "));
   }
 
-  
+  // Nach Abschluss des Experiments weiterleiten
+function finishExperiment() {
+    try {
+        if (!window.redirect || window.redirect === "") {
+            throw new Error("Die Weiterleitungs-URL ist leer oder ungültig.");
+        }
+
+        // Debug-Ausgabe der Weiterleitungs-URL
+        console.log("Experiment abgeschlossen. Weiterleitung zu:", window.redirect);
+
+        // Weiterleitung zur Ziel-URL
+        window.location.href = window.redirect;
+    } catch (error) {
+        console.error("Fehler bei der Weiterleitung: ", error.message);
+        alert("Es gab einen Fehler bei der Weiterleitung. Bitte versuchen Sie es erneut.");
+    }
+}
   // Simple Countdown
   // via http://davidwalsh.name/jquery-countdown-plugin
   jQuery.fn.countDown = function(settings,to) {
