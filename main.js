@@ -23,7 +23,7 @@ $(function() {
 	// If the study is called with a parameter for redirection, as explained in the documentation, this value is overwritten. 
 	// To the redirect link, the following information will be appended: (1) participant number, (2) condition, (3) username, (4) description submitted by participant. These variables can be extracted from the link, saved as data, and used for linking the Social Media Ostracism paradigm to subsequent tasks and measures. See documentation for more details.
 
-    settings.defaultredirect = 'https://umfrage.umit-tirol.at/index.php/845248?lang=de?lastpage=6';
+    settings.defaultredirect = 'https://umfrage.umit-tirol.at/index.php/845248?lang=de&lastpage=6';
 
 	
 	// **Tasklength**     
@@ -409,7 +409,7 @@ $(function() {
         return true; 
       }
   }
-
+onsole.log("Redirect-URL im Experiment: ", window.redirect);
 
   // Function to add extra zeros infront of numbers (used for the countdown)
   // via http://stackoverflow.com/a/6466243
@@ -438,10 +438,6 @@ function finishExperiment() {
         window.location.href = window.redirect + "&done=1";
     }
 }
-	var nextPageUrl = "https://umfrage.umit-tirol.at/index.php/845248?lang=de?lastpage=6";
-nextPageUrl += "?lastpage=6";
-console.log("Weiterleitung zu: " + nextPageUrl);
-window.location.href = nextPageUrl;
 	
   // Simple Countdown
   // via http://davidwalsh.name/jquery-countdown-plugin
