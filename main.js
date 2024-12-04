@@ -378,15 +378,15 @@ function get_params() {
 	}	
 	  
   }
-  function finishExperiment() {
+ function finishExperiment() {
     console.log("Experiment abgeschlossen. Weiterleitung zu:", window.redirect);
 
     // Sicherstellen, dass die URL korrekt ist
     if (!window.redirect || window.redirect === "") {
         alert("Es gab ein Problem mit der Weiterleitung. Bitte kontaktieren Sie den Support.");
     } else {
-        // Rückleitung zur spezifischen LimeSurvey-Umfrage oder Studie
-        window.location.href = window.redirect + '&p=' + window.participant + '&c=' + window.condition + '&u=' + encodeURI(window.username) + '&av=' + window.avatarexport + '&d=' + encodeURI(window.description);
+        // Rückleitung zur spezifischen LimeSurvey-Seite
+        window.location.href = window.redirect + "&done=1";
     }
 }
 
