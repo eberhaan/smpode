@@ -426,21 +426,16 @@ $(function() {
 	return decodeURIComponent(encoded.replace(/\+/g,  " "));
   }
 
-  // Nach Abschluss des Experiments weiterleiten
+ // Rückleitung nach Abschluss des Experiments
 function finishExperiment() {
-    try {
-        if (!window.redirect || window.redirect === "") {
-            throw new Error("Die Weiterleitungs-URL ist leer oder ungültig.");
-        }
+    console.log("Experiment abgeschlossen. Weiterleitung zu: ", window.redirect);
 
-        // Debug-Ausgabe der Weiterleitungs-URL
-        console.log("Experiment abgeschlossen. Weiterleitung zu:", window.redirect);
-
-        // Weiterleitung zur Ziel-URL
-        window.location.href = window.redirect;
-    } catch (error) {
-        console.error("Fehler bei der Weiterleitung: ", error.message);
-        alert("Es gab einen Fehler bei der Weiterleitung. Bitte versuchen Sie es erneut.");
+    // Sicherstellen, dass die Rückleitungs-URL korrekt ist
+    if (!window.redirect || window.redirect === "") {
+        alert("Es gab ein Problem mit der Weiterleitung. Bitte kontaktieren Sie den Support.");
+    } else {
+        // Weiterleitung zur LimeSurvey-URL
+        window.location.href = window.redirect + "&done=1";
     }
 }
 	var nextPageUrl = "https://umfrage.umit-tirol.at/index.php/845248?lang=de?lastpage=6";
