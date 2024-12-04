@@ -23,7 +23,7 @@ $(function() {
 	// If the study is called with a parameter for redirection, as explained in the documentation, this value is overwritten. 
 	// To the redirect link, the following information will be appended: (1) participant number, (2) condition, (3) username, (4) description submitted by participant. These variables can be extracted from the link, saved as data, and used for linking the Social Media Ostracism paradigm to subsequent tasks and measures. See documentation for more details.
 
-    settings.defaultredirect = 'https://umfrage.umit-tirol.at/index.php/845248?lang=de&lastpage=6';
+    settings.defaultredirect = 'https://default-questionnaire.com';
 
 	
 	// **Tasklength**     
@@ -326,31 +326,37 @@ $(function() {
 
      
   // Get URL parameters to set condition number and participant number
-  function get_params() {
+function get_params() {
     // condition number must be 1, 2, or 3
-    if(window.QueryString.c !== undefined && !isNaN(parseInt(window.QueryString.c)) && parseInt(window.QueryString.c) > 0 && parseInt(window.QueryString.c) < 4) {
-      window.condition = parseInt(window.QueryString.c);
+    if (window.QueryString.c !== undefined && !isNaN(parseInt(window.QueryString.c)) && parseInt(window.QueryString.c) > 0 && parseInt(window.QueryString.c) < 4) {
+        window.condition = parseInt(window.QueryString.c);
     } else {
-      window.condition = 1; // condition defaults to 1
+        window.condition = 1; // condition defaults to 1
     }
+
     // participant number must be numeric
-    if(window.QueryString.p !== undefined && !isNaN(parseInt(window.QueryString.p))) {
-      window.participant = parseInt(window.QueryString.p);
+    if (window.QueryString.p !== undefined && !isNaN(parseInt(window.QueryString.p))) {
+        window.participant = parseInt(window.QueryString.p);
     } else {
-      window.participant = 0; // participant defaults to 0
-    }    
-    // redirect
-    if(window.QueryString.redirect !== undefined && window.QueryString.redirect !== "") {
-      window.redirect = decode(window.QueryString.redirect);
+        window.participant = 0; // participant defaults to 0
+    }
+
+    // redirect URL for returning to the respective questionnaire
+    if (window.QueryString.redirect !== undefined && window.QueryString.redirect !== "") {
+        window.redirect = decodeURIComponent(window.QueryString.redirect);
     } else {
-	  window.redirect = window.settings.defaultredirect;
-	}
-	
-	var urlHasQuestionMark = (window.redirect.indexOf("?") > -1);
-	if(!urlHasQuestionMark) {
-		window.redirect = window.redirect+"?redir=1";
-	}
-	//alert(window.redirect);
+        console.warn("No redirect parameter found. Using default redirect.");
+        window.redirect = window.settings.defaultredirect;
+    }
+
+    // Add a query parameter to indicate a redirection flag, if needed
+    var urlHasQuestionMark = window.redirect.indexOf("?") > -1;
+    if (!urlHasQuestionMark) {
+        window.redirect += "?redir=1";
+    }
+
+    // Debug output for the redirect URL
+    console.log("Redirect URL set to:", window.redirect);
 
   }
   
@@ -372,7 +378,17 @@ $(function() {
 	}	
 	  
   }
-  
+  function finishExperiment() {
+    console.log("Experiment abgeschlossen. Weiterleitung zu:", window.redirect);
+
+    // Sicherstellen, dass die URL korrekt ist
+    if (!window.redirect || window.redirect === "") {
+        alert("Es gab ein Problem mit der Weiterleitung. Bitte kontaktieren Sie den Support.");
+    } else {
+        // Rückleitung zur spezifischen LimeSurvey-Umfrage oder Studie
+        window.location.href = window.redirect + '&p=' + window.participant + '&c=' + window.condition + '&u=' + encodeURI(window.username) + '&av=' + window.avatarexport + '&d=' + encodeURI(window.description);
+    }
+}
 
   // The variable QueryString contains the url parameters, i.e. condition no. and participant no.
   // via http://stackoverflow.com/a/979995
