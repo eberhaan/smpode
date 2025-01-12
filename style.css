@@ -3,13 +3,13 @@ body {
 }
 
 .container {
-	width: 900px;
+	width: 100%;
 } 
 
 .tophalf {
 	margin-bottom: 0px !important;
     background-color: #ffffff;
-	border: 2px solid #d5d7e0;
+	border: 1px solid #d5d7e0;
 	padding: 15px;	
 }
 
@@ -43,7 +43,7 @@ img.avatar {
 .tophalf .main {
 	float: left;
 	width: 120px;
-	font-size: 10pt;
+	font-size: 11pt;
 	text-align: left;
 	padding-left: 15px; /* text to avatar distance */
 }
@@ -51,7 +51,7 @@ img.avatar {
 .tophalf h3 {
 	color: #3B5999;
   font-variant: normal;
-	font-size: 20px;
+	font-size: 22px;
 	text-transform:capitalize;
   margin-left: 85px;
   padding-left: 0px;
@@ -60,7 +60,7 @@ img.avatar {
 }
 
 div.masonry {
-    width: 850px;
+    width: 90%;
 }
 
 
@@ -69,7 +69,7 @@ div.masonry {
 	color: #3B5999;
 	height: 15px;
 	background-color: #f5f6fa;
-	border: 2px solid #d5d7e0;	
+	border: 1px solid #d5d7e0;	
 	padding: 5px;
 	padding-bottom: 8px !important;
 	border-top: none;
@@ -85,7 +85,7 @@ button.btn {
 }
 
 button.btn.btn-primary {
-    padding: 3px;
+    padding: 5px;
 	color: #ffffff !important;
 }
 
@@ -105,6 +105,7 @@ button.btn.btn-primary {
 #final-continue {
     margin-top: 20px;
     padding: 4px;
+font-size: 12pt;
 }
 
 span.badge.badge-custom.userslikes {
@@ -122,7 +123,7 @@ span.badge.badge-custom.userslikes {
  */ 
 .btn-custom {
   background-color: hsl(195, 60%, 35%) !important;
-  padding: 3px;
+  padding: 5px;
   padding-left: 5px;
   padding-right: 5px;
   background-repeat: repeat-x;
@@ -178,7 +179,7 @@ span.badge.badge-custom.userslikes {
     background-color: #ebedf5;
 	position:fixed; 
 	top:0; 
-	width: 700px;
+	width: 90%;
 	padding-top: 20px; 
 	padding-bottom: 0px;
 	z-index: 999999;
@@ -187,6 +188,7 @@ span.badge.badge-custom.userslikes {
 .instr {
     padding-left: 100px;
     padding-top: 100px;
+	font-size: 14pt;
 }
 
 #others {
@@ -221,13 +223,13 @@ img.avatar.selected {
 }
 
 #description {
-	width: 500px !important;
+	width: 90% !important;
 	height: 100px !important;
 	max-height: 100px !important;
 }
 
 #username {
-	width: 500px;
+	width: 90%;
 	height: 30px;
 }
 
