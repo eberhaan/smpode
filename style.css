@@ -1,11 +1,13 @@
 body { 
-  padding-top: 30px;
-	 text-align: center;
+  padding-top: 10vh; /* Vertikale Zentrierung */
+  padding-bottom: 10vh; /* Gleicher Abstand unten */
+	text-align: center;
 }
 
 .container {
-	width: 80%;
+	width: 70%;
 	 margin: 0 auto;
+	text-align: left;
 } 
 
 .tophalf {
@@ -30,8 +32,8 @@ div.main {
 }
 
 img.avatar {
-    width: 75px;
-    height: 75px;
+    width: 85px;
+    height: 85px;
 }
 
 #avatar .avatar {
@@ -48,6 +50,8 @@ img.avatar {
 	font-size: 11pt;
 	text-align: left;
 	padding-left: 15px; /* text to avatar distance */
+	margin-top: 15px; /* Mehr Abstand zwischen Avatar/Name und Beschreibung */
+	line-height: 1.6; /* Zeilenabstand minimal erhöht */
 }
 
 .tophalf h3 {
@@ -58,11 +62,12 @@ img.avatar {
   margin-left: 85px;
   padding-left: 0px;
   margin-top: 35px;
-  margin-bottom: 0;
+  margin-bottom: 5px;
 }
 
 div.masonry {
-    width: 90%;
+    width: 70%;
+margin: 0 auto;
 }
 
 
@@ -225,13 +230,14 @@ img.avatar.selected {
 }
 
 #description {
-	width: 90% !important;
-	height: 100px !important;
-	max-height: 100px !important;
+	width: 60% !important;
+	height: 150px !important;
+	max-height: 150px !important;
+	font-size: 13pt;
 }
 
 #username {
-	width: 90%;
+	width: 60%;
 	height: 30px;
 }
 
